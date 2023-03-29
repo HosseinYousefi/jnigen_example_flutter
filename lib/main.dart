@@ -31,27 +31,42 @@ class _AdderState extends State<Adder> {
 
   @override
   Widget build(BuildContext context) {
+    const inputDecoration = InputDecoration(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(50),
+        ),
+      ),
+    );
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          TextField(
-            onChanged: (value) {
-              setState(() {
-                firstValue = int.tryParse(value) ?? 0;
-              });
-            },
-          ),
-          TextField(
-            onChanged: (value) {
-              setState(() {
-                secondValue = int.tryParse(value) ?? 0;
-              });
-            },
-          ),
-          // Here we're using the Java method directly from Dart!
-          Text('Sum is ${Example.sum(firstValue, secondValue)}'),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            TextField(
+              decoration: inputDecoration,
+              onChanged: (value) {
+                setState(() {
+                  firstValue = int.tryParse(value) ?? 0;
+                });
+              },
+            ),
+            TextField(
+              decoration: inputDecoration,
+              onChanged: (value) {
+                setState(() {
+                  secondValue = int.tryParse(value) ?? 0;
+                });
+              },
+            ),
+            // Here we're using the Java method directly from Dart!
+            Text(
+              'Sum is ${Example.sum(firstValue, secondValue)}',
+              style: const TextStyle(fontSize: 36),
+            ),
+          ],
+        ),
       ),
     );
   }
